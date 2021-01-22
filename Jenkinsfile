@@ -15,7 +15,7 @@ node {
       stage('Build') 
            {
             sh 'uname -a'
-            sh 'mvn -B -DskipTests clean package'  
+            sh 'mvn clean install'  
           }
 
         stage('Test') 
@@ -24,8 +24,8 @@ node {
             sh 'ifconfig' 
         }
 
-        stage('Deliver') 
+        */stage('Deliver') 
           {
                 sh 'bash ./jenkins/deliver.sh'
-        }
+        }*/
 }
