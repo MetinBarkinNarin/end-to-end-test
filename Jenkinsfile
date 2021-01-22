@@ -14,11 +14,7 @@ node {
 
       stage('Build') 
            {
-                  docker {
-                    reuseNode true
-                    image 'openjdk:11.0-jdk-slim'
-                    args  '-v /var/run/docker.sock:/var/run/docker.sock --group-add 992'
-                }   
+ 
             sh 'uname -a'
             sh 'mvn clean install'  
           }
