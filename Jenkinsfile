@@ -21,18 +21,18 @@ node {
 		"""
         }
     }*/
-withEnv(['TESTCONTAINERS_RYUK_DISABLED=true'
-             ]) {	
+/*withEnv(['TESTCONTAINERS_RYUK_DISABLED=true'
+             ]) {	*/
       stage('Build') 
            {
-	docker.image('alpine:3.5').inside {
+	//docker.image('alpine:3.5').inside {
             echo "ryuk disabled is ${TESTCONTAINERS_RYUK_DISABLED}"
             sh 'uname -a'
             sh 'mvn clean install'  
-        }
+   //     }
 
           }
-}
+//}
         stage('Test') 
         {
             //sh 'mvn test'
