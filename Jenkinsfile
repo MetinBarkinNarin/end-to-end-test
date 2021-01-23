@@ -21,8 +21,8 @@ node {
 		"""
         }
     }*/
-withEnv(['TESTCONTAINERS_RYUK_DISABLED=true'
-             ]) {	
+/*withEnv(['TESTCONTAINERS_RYUK_DISABLED=true'
+             ]) {	*/
       stage('Build') 
            {
 	//docker.image('alpine:3.5').inside {
@@ -32,7 +32,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true'
    //     }
 
           }
-}
+//}
         stage('Test') 
         {
             //sh 'mvn test'
