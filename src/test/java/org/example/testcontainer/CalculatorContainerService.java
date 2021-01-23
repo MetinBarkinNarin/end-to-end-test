@@ -36,6 +36,7 @@ public class CalculatorContainerService {
             new GenericContainer<>(ADDITION_SERVICE)
                     .withExposedPorts(8070)
                     .withNetwork(Network.newNetwork())
+                    .withNetworkAliases("docker")
                     .withEnv("SERVER_PORT", "8070")
                     .withEnv("SERVER_ADDRESS", "localhost");
 
