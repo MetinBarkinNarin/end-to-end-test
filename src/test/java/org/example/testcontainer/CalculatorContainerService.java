@@ -23,9 +23,7 @@ public class CalculatorContainerService {
 //            .parse("selenium/node-chrome:latest")
 //            .asCompatibleSubstituteFor("node-chrome");
 
-    static {
-        setRyukDisabledInEnv();
-    }
+
 
 //    private Network network=Network.newNetwork();
 //
@@ -129,15 +127,5 @@ public class CalculatorContainerService {
 //    public void setCalculatorContainer(GenericContainer<?> calculatorContainer) {
 //        this.calculatorContainer = calculatorContainer;
 //    }
-    private static void setRyukDisabledInEnv() {
-        try {
-            Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
-            Field theCaseInsensitiveEnvironment = processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
-            theCaseInsensitiveEnvironment.setAccessible(true);
-            Map<String, String> caseEnv = (Map<String, String>) theCaseInsensitiveEnvironment.get(null);
-            caseEnv.put("TESTCONTAINERS_RYUK_DISABLED", "true");
-        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
