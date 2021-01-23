@@ -21,13 +21,15 @@ node {
 		"""
         }
     }*/
+withEnv(['TESTCONTAINERS_RYUK_ENABLED=false'
+             ]) {	
       stage('Build') 
            {
- 
+ 		 echo "ryuk enable is ${TESTCONTAINERS_RYUK_ENABLED}"
             sh 'uname -a'
             sh 'mvn clean install'  
           }
-
+}
         stage('Test') 
         {
             //sh 'mvn test'
