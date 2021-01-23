@@ -11,6 +11,7 @@ node {
     stage('Checkout') 
     {
         checkout scm
+	sh "docker build -t testcontainers/ryuk:0.3.0 ."    
     }
 stage('Cucumber Tests') {
         withMaven(maven: 'maven-3') {
