@@ -27,9 +27,7 @@ public class AdditionHappyStepDefinitions {
     @Autowired
     private CalculatorContainerService calculatorContainerService;
 
-    static {
-        setRyukDisabledInEnv();
-    }
+
 
     @DynamicPropertySource//This annotation lets you override Spring configuration properties programmatically
     static void properties(DynamicPropertyRegistry registry) {
@@ -38,7 +36,7 @@ public class AdditionHappyStepDefinitions {
 
     @Given("{} and {} are given")
     public void givenNumbers(Integer numberOne, Integer numberTwo) {
-        System.out.println("Given " + numberOne + " " + numberTwo + " " + this.calculatorContainerService.getCalculatorContainer().getDockerImageName());
+        System.out.println("Given " + numberOne + " " + numberTwo + " " );
     }
 
     @When("Mutlu wants to add those two numbers")
@@ -50,17 +48,7 @@ public class AdditionHappyStepDefinitions {
     public void checkingResultNumber(Integer result) {
         System.out.println("Then " + result);
 
-        this.calculatorContainerService.stopContainers();
+       // this.calculatorContainerService.stopContainers();
     }
-    private static void setRyukDisabledInEnv() {
-        try {
-            Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
-            Field theCaseInsensitiveEnvironment = processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
-            theCaseInsensitiveEnvironment.setAccessible(true);
-            Map<String, String> caseEnv = (Map<String, String>) theCaseInsensitiveEnvironment.get(null);
-            caseEnv.put("TESTCONTAINERS_RYUK_DISABLED", "true");
-        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

@@ -1,14 +1,12 @@
 package org.example.testcontainer;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.testcontainers.containers.BrowserWebDriverContainer;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.utility.DockerImageName;
 
-import java.io.File;
+import java.lang.reflect.Field;
+import java.util.Map;
 
 @Service
 public class CalculatorContainerService {
@@ -25,64 +23,80 @@ public class CalculatorContainerService {
 //            .parse("selenium/node-chrome:latest")
 //            .asCompatibleSubstituteFor("node-chrome");
 
-    private Network network;
-    private GenericContainer<?> additionContainer;
-    private GenericContainer<?> subtractionContainer;
-    private GenericContainer<?> calculatorContainer;
-    private BrowserWebDriverContainer<?> chromeContainer;
+    static {
+        setRyukDisabledInEnv();
+    }
+
+//    private Network network=Network.newNetwork();
+//
+//    private GenericContainer<?> subtractionContainer;
+//    private GenericContainer<?> calculatorContainer;
+//    private BrowserWebDriverContainer<?> chromeContainer;
+
+
+    public static GenericContainer<?> additionContainer =
+            new GenericContainer<>(ADDITION_SERVICE)
+                    .withExposedPorts(8070)
+                    .withNetwork(Network.newNetwork())
+                    .withEnv("SERVER_PORT", "8070")
+                    .withEnv("SERVER_ADDRESS", "localhost");
 
     public CalculatorContainerService() {
-        network = Network.newNetwork();
-        additionContainer = new GenericContainer<>(ADDITION_SERVICE)
-                .withExposedPorts(8070)
-                .withNetwork(network)
-                .withEnv("SERVER_PORT", "8070")
-                .withEnv("SERVER_ADDRESS", "localhost");
+        additionContainer.start();
+    }
 
-        subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
-                .withExposedPorts(8071)
-//                .withExtraHost("subtraction-service","10.150.17.73")
-                .withNetwork(network)
-                .withEnv("SERVER_PORT", "8071")
-                .withEnv("SERVER_ADDRESS", "localhost");
-
-        calculatorContainer = new GenericContainer<>(CALCULATOR_SERVICE)
-                .withExposedPorts(8072)
-                .withNetwork(network)
-                .withEnv("SERVER_PORT", "8072")
-                .withEnv("SERVER_ADDRESS", "localhost");
-
-        chromeContainer = new BrowserWebDriverContainer<>()
-                .withNetwork(network)
-                .withNetworkAliases("chrome")
-                .withCapabilities(DesiredCapabilities.chrome())
-                .withRecordingMode(BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL, new File("./target/"));
+//    public CalculatorContainerService() {
+//        network = Network.newNetwork();
+//        additionContainer = new GenericContainer<>(ADDITION_SERVICE)
+//                .withExposedPorts(8070)
+//                .withNetwork(network)
+//                .withEnv("SERVER_PORT", "8070")
+//                .withEnv("SERVER_ADDRESS", "localhost");
+//
+//        subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
+//                .withExposedPorts(8071)
+////                .withExtraHost("subtraction-service","10.150.17.73")
+//                .withNetwork(network)
+//                .withEnv("SERVER_PORT", "8071")
+//                .withEnv("SERVER_ADDRESS", "localhost");
+//
+//        calculatorContainer = new GenericContainer<>(CALCULATOR_SERVICE)
 //                .withExposedPorts(8072)
 //                .withNetwork(network)
 //                .withEnv("SERVER_PORT", "8072")
 //                .withEnv("SERVER_ADDRESS", "localhost");
+//
+//        chromeContainer = new BrowserWebDriverContainer<>()
+//                .withNetwork(network)
+//                .withNetworkAliases("chrome")
+//                .withCapabilities(DesiredCapabilities.chrome())
+//                .withRecordingMode(BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL, new File("./target/"));
+////                .withExposedPorts(8072)
+////                .withNetwork(network)
+////                .withEnv("SERVER_PORT", "8072")
+////                .withEnv("SERVER_ADDRESS", "localhost");
+//
+//        additionContainer.start();
+//        subtractionContainer.start();
+//        calculatorContainer.start();
+//        chromeContainer.start();
+//    }
 
-        additionContainer.start();
-        subtractionContainer.start();
-        calculatorContainer.start();
-        chromeContainer.start();
-    }
-
-    public void stopContainers(){
-        additionContainer.close();
-        subtractionContainer.close();
-        calculatorContainer.close();
-        chromeContainer.close();
-        network.close();
-    }
-
-    public Network getNetwork() {
-        return network;
-    }
-
-    public void setNetwork(Network network) {
-        this.network = network;
-    }
+//    public void stopContainers(){
+//        additionContainer.close();
+//        subtractionContainer.close();
+//        calculatorContainer.close();
+//        chromeContainer.close();
+//        network.close();
+//    }
+//
+//    public Network getNetwork() {
+//        return network;
+//    }
+//
+//    public void setNetwork(Network network) {
+//        this.network = network;
+//    }
 
     public GenericContainer<?> getAdditionContainer() {
         return additionContainer;
@@ -92,27 +106,38 @@ public class CalculatorContainerService {
         this.additionContainer = additionContainer;
     }
 
-    public GenericContainer<?> getSubtractionContainer() {
-        return subtractionContainer;
-    }
-
-    public void setSubtractionContainer(GenericContainer<?> subtractionContainer) {
-        this.subtractionContainer = subtractionContainer;
-    }
-
-    public GenericContainer<?> getCalculatorContainer() {
-        return calculatorContainer;
-    }
-
-    public BrowserWebDriverContainer<?> getChromeContainer() {
-        return chromeContainer;
-    }
-
-    public void setChromeContainer(BrowserWebDriverContainer<?> chromeContainer) {
-        this.chromeContainer = chromeContainer;
-    }
-
-    public void setCalculatorContainer(GenericContainer<?> calculatorContainer) {
-        this.calculatorContainer = calculatorContainer;
+    //    public GenericContainer<?> getSubtractionContainer() {
+//        return subtractionContainer;
+//    }
+//
+//    public void setSubtractionContainer(GenericContainer<?> subtractionContainer) {
+//        this.subtractionContainer = subtractionContainer;
+//    }
+//
+//    public GenericContainer<?> getCalculatorContainer() {
+//        return calculatorContainer;
+//    }
+//
+//    public BrowserWebDriverContainer<?> getChromeContainer() {
+//        return chromeContainer;
+//    }
+//
+//    public void setChromeContainer(BrowserWebDriverContainer<?> chromeContainer) {
+//        this.chromeContainer = chromeContainer;
+//    }
+//
+//    public void setCalculatorContainer(GenericContainer<?> calculatorContainer) {
+//        this.calculatorContainer = calculatorContainer;
+//    }
+    private static void setRyukDisabledInEnv() {
+        try {
+            Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
+            Field theCaseInsensitiveEnvironment = processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
+            theCaseInsensitiveEnvironment.setAccessible(true);
+            Map<String, String> caseEnv = (Map<String, String>) theCaseInsensitiveEnvironment.get(null);
+            caseEnv.put("TESTCONTAINERS_RYUK_DISABLED", "true");
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }
