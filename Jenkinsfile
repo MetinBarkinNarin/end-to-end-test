@@ -13,14 +13,14 @@ node {
     {
         checkout scm
     }
-stage('Cucumber Tests') {
+/*stage('Cucumber Tests') {
         withMaven(maven: 'maven-3') {
             sh """
 			cd ${env.WORKSPACE_LOCAL}
 			mvn clean test
 		"""
         }
-    }
+    }*/
       stage('Build') 
            {
  
