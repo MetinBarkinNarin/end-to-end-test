@@ -6,7 +6,7 @@ node {
         def mavenHome  = tool 'maven-3'
         env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
          env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()
-	  env.TESTCONTAINERS_RYUK_ENABLED=false  
+	  env.TESTCONTAINERS_RYUK_ENABLED=true  
     }
 
     stage('Checkout') 
