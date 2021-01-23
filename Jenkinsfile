@@ -25,9 +25,12 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true'
              ]) {	
       stage('Build') 
            {
- 		 echo "ryuk enable is ${TESTCONTAINERS_RYUK_DISABLED}"
+	docker.image('alpine:3.5').inside {
+            echo "ryuk disabled is ${TESTCONTAINERS_RYUK_DISABLED}"
             sh 'uname -a'
             sh 'mvn clean install'  
+        }
+
           }
 }
         stage('Test') 
