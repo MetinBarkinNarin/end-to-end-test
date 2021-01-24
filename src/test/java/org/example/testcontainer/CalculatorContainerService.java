@@ -34,6 +34,7 @@ public class CalculatorContainerService {
 
     public static GenericContainer<?> additionContainer =
             new GenericContainer<>(ADDITION_SERVICE)
+                    .withPrivilegedMode(true)
                     .withExposedPorts(8070)
                     .withNetwork(Network.newNetwork())
                     .withNetworkAliases("docker")
