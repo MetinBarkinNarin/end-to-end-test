@@ -39,7 +39,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
         archive '**/cucumber.json'
         cucumber '**/cucumber.json'
     }
-    stage('Import tasks to Jira for Features') {
+    /*stage('Import tasks to Jira for Features') {
 
 
 		def xrayConnectorId = "946c7738-281f-4ee9-bff5-5b78308fb9d7"
