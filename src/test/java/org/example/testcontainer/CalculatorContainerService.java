@@ -71,14 +71,14 @@ public class CalculatorContainerService {
         additionContainer.start();
         subtractionContainer.start();
         calculatorContainer.start();
-        chromeContainer.start();
+//        chromeContainer.start();
     }
 
     public void stopContainers(){
         additionContainer.close();
         subtractionContainer.close();
         calculatorContainer.close();
-        chromeContainer.close();
+//        chromeContainer.close();
         network.close();
     }
 
