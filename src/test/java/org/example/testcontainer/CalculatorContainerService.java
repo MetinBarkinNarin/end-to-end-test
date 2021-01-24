@@ -59,7 +59,6 @@ public class CalculatorContainerService {
                 .withEnv("SERVER_ADDRESS", "localhost");
 
         chromeContainer = new BrowserWebDriverContainer<>()
-                .withPrivilegedMode(true)
                 .withNetwork(network)
                 .withNetworkAliases("chrome")
                 .withCapabilities(DesiredCapabilities.chrome())
