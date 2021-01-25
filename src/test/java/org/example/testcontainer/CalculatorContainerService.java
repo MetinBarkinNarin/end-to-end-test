@@ -44,7 +44,7 @@ public class CalculatorContainerService {
                 .withExposedPorts(8070)
                 .withNetwork(network)
                 .withEnv("SERVER_PORT", "8070")
-                .withEnv("SERVER_ADDRESS", "localhost");
+           
 
         subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
                 .withPrivilegedMode(true)
