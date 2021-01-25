@@ -39,8 +39,7 @@ public class CalculatorContainerService {
 
     public CalculatorContainerService() {
         network = Network.newNetwork();
-        additionContainer = new GenericContainer<>(ADDITION_SERVICE)
-                .withPrivilegedMode(true)
+        additionContainer = new GenericContainer<>(ADDITION_SERVICE) 
                 .withNetwork(network)
                 .withEnv("SERVER_PORT", "8070");
            
