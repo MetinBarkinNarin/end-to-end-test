@@ -16,7 +16,7 @@ node {
     }
 stage('Cucumber Tests') {
         withMaven(maven: 'maven-3') {
-            sh """
+            bat """
 			cd ${env.WORKSPACE_LOCAL}
 			mvn clean test
 		"""
