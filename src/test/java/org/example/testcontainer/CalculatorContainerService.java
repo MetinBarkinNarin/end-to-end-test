@@ -43,7 +43,7 @@ public class CalculatorContainerService {
 //            .withPrivilegedMode(true)
             .withExposedPorts(8070)
                 .withNetwork(network)
-                .withNetworkAliases("docker")
+                .withNetworkAliases("jenkins-network")
                 .withEnv("SERVER_PORT", "8070");
            
 
