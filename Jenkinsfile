@@ -5,8 +5,9 @@ node {
         def dockerHome = tool 'docker'
         def mavenHome  = tool 'maven-3'
         env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+	 env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()
          env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()
-	  env.TESTCONTAINERS_RYUK_ENABLED=true  
+	
     }
 
     stage('Checkout') 
@@ -54,7 +55,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
     stage('Import results to Xray') {
 
 		def description = "[BUILD_URL|${env.BUILD_URL}]"
-		def labels = '["regression","automated_regression"]'
+		def labels = '["end_to_end","automated_end_to_end"]'
 		def environment = "DEV"
 		def testExecutionFieldId = 10007
 		def testEnvironmentFieldName = "customfield_10131"
