@@ -1,4 +1,5 @@
 Ability: Student can add two numbers
+  @CAL-1
   Scenario: Valid two numbers are supplied
     Given 8 and 6 are given
     When Mutlu wants to add those two numbers
