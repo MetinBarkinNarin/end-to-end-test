@@ -41,7 +41,6 @@ public class CalculatorContainerService {
         network = Network.newNetwork();
         additionContainer = new GenericContainer<>(ADDITION_SERVICE)
                 .withPrivilegedMode(true)
-                .withExposedPorts(8070)
                 .withNetwork(network)
                 .withEnv("SERVER_PORT", "8070")
            
