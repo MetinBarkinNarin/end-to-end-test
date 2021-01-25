@@ -23,7 +23,9 @@ node {
         }
     }*/
 withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
-'WORKSPACE_LOCAL=${env.WORKSPACE_LOCAL}'
+'WORKSPACE_LOCAL=${env.WORKSPACE_LOCAL}',
+'DOCKER_CLIENT_STRATEGY=org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy'
+
           ]) {
       stage('Build') 
            {
