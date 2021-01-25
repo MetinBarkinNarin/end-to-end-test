@@ -2,11 +2,11 @@ node {
 
     stage('Initialize')
     {
-        def dockerHome = tool 'docker'
+      /*  def dockerHome = tool 'docker'
         def mavenHome  = tool 'maven-3'
-      /*  env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-	 env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()*/
-         env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()
+       env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+	 env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()
+         env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()*/
 	
     }
 
