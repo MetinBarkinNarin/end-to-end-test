@@ -50,6 +50,7 @@ public class CalculatorContainerService {
 //                .withPrivilegedMode(true)
 //                .withExtraHost("subtraction-service","10.150.17.73")
                 .withNetwork(network)
+                .withExtraHost("docker","docker")
                 .withExposedPorts(8071)
                 .withEnv("SERVER_PORT", "8071")
                 .withEnv("SERVER_ADDRESS", "localhost");
