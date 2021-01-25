@@ -22,15 +22,14 @@ node {
 		"""
         }
     }*/
-withEnv([
-'WORKSPACE_LOCAL=${env.WORKSPACE_LOCAL}',
-'DOCKER_CLIENT_STRATEGY=org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy'
+withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
+'WORKSPACE_LOCAL=${env.WORKSPACE_LOCAL}'
 
           ]) {
       stage('Build') 
            {
 	//docker.image('alpine:3.5').inside {
-          // echo "ryuk disabled is ${TESTCONTAINERS_RYUK_DISABLED}"
+           echo "ryuk disabled is ${TESTCONTAINERS_RYUK_DISABLED}"
            echo "WORKSPACE_LOCAL is ${WORKSPACE_LOCAL}as"
             sh 'uname -a'
             sh 'mvn clean install'  
