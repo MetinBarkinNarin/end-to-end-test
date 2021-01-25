@@ -43,7 +43,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
 
 
 		def xrayConnectorId = "2cc784ab-688a-4c1c-b0e7-e56017cfca7e"
-	step([$class: 'XrayImportFeatureBuilder', folderPath: 'target/test-classes/resources/features/', projectKey: 'CAL', serverInstance: xrayConnectorId])
+	step([$class: 'XrayImportFeatureBuilder', folderPath: 'target/test-classes/features', projectKey: 'CAL', serverInstance: xrayConnectorId])
 
 	   /* def response = sh(script: "curl -u mnarin:mnarin -X GET -H 'Content-Type: application/json' 'http://10.150.17.73:8100/rest/api/2/issue/10123'", returnStdout: true)
 	     def response2 = sh(script: '$XRAY_ISSUES_MODIFIED', returnStdout: true)
