@@ -38,7 +38,7 @@ public class CalculatorContainerService {
 
 
     public CalculatorContainerService() {
-        network = Network.SHARED;
+        network = Network.newNetwork();
         additionContainer = new GenericContainer<>(ADDITION_SERVICE)
             .withPrivilegedMode(true)
             .withExposedPorts(8070)

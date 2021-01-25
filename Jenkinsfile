@@ -4,8 +4,8 @@ node {
     {
         def dockerHome = tool 'docker'
         def mavenHome  = tool 'maven-3'
-        env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
-	 env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()
+      /*  env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+	 env.BUILD_TIME = sh(returnStdout: true, script: 'date +%F-%T').trim()*/
          env.WORKSPACE_LOCAL = sh(returnStdout: true, script: 'pwd').trim()
 	
     }
@@ -14,15 +14,15 @@ node {
     {
         checkout scm
     }
-/*stage('Cucumber Tests') {
+stage('Cucumber Tests') {
         withMaven(maven: 'maven-3') {
             sh """
 			cd ${env.WORKSPACE_LOCAL}
 			mvn clean test
 		"""
         }
-    }*/
-withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
+    }
+/*withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
 'WORKSPACE_LOCAL=${env.WORKSPACE_LOCAL}'
 
           ]) {
@@ -36,7 +36,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
    //     }
 
           }
-}
+}*/
     stage('Expose report') {
         archive '**/cucumber.json'
         cucumber '**/cucumber.json'
