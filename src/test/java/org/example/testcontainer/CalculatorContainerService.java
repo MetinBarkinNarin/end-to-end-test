@@ -42,14 +42,12 @@ public class CalculatorContainerService {
         additionContainer = new GenericContainer<>(ADDITION_SERVICE)
             .withPrivilegedMode(true)
             .withExposedPorts(8070)
-                .withNetwork(network)
                 .withEnv("SERVER_PORT", "8070");
            
 
         subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
 //                .withPrivilegedMode(true)
 //                .withExtraHost("subtraction-service","10.150.17.73")
-                .withNetwork(network)
 //                .withExtraHost("docker","docker")
                 .withExposedPorts(8071)
                 .withEnv("SERVER_PORT", "8071")
