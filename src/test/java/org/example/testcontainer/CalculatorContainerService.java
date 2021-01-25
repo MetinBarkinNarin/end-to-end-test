@@ -48,7 +48,6 @@ public class CalculatorContainerService {
 
         subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
                 .withPrivilegedMode(true)
-            .
 //                .withExtraHost("subtraction-service","10.150.17.73")
                 .withNetwork(network)
                 .withEnv("SERVER_PORT", "8071")
