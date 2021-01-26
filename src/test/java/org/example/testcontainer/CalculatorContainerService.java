@@ -36,16 +36,15 @@ public class CalculatorContainerService {
 
     public CalculatorContainerService() {
         network = Network.SHARED;
-        Testcontainers.exposeHostPorts(8070);
         additionContainer = new GenericContainer<>(ADDITION_SERVICE)
                 .withPrivilegedMode(true)
                 .withNetwork(network)
                 .withNetworkMode("host")
+                .withExtraHost("docker","docker")
                 .withExposedPorts(8070)
                 .withEnv("SERVER_PORT", "8070");
 
-        Testcontainers.exposeHostPorts(additionContainer.getMappedPort(8070));
-        
+
         subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
 //                .withPrivilegedMode(true)
 //                .withExtraHost("subtraction-service","10.150.17.73")
