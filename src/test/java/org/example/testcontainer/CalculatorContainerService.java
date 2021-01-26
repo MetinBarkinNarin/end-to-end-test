@@ -38,7 +38,7 @@ public class CalculatorContainerService {
         additionContainer = new GenericContainer<>(ADDITION_SERVICE)
                 .withPrivilegedMode(true)
                 .withNetwork(network)
-                .withNetworkMode("host")
+                .withNetworkMode("docker")
                 .withExposedPorts(8070)
                 .withEnv("SERVER_PORT", "8070");
 
