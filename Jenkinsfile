@@ -44,7 +44,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
     stage('Import tasks to Jira for Features') {
 
 
-		def xrayConnectorId = "2cc784ab-688a-4c1c-b0e7-e56017cfca7e"
+		def xrayConnectorId = "335af8bd-b7bd-41d4-ab8a-cde00f41bbd1"
 	step([$class: 'XrayImportFeatureBuilder', folderPath: 'target/test-classes/features', projectKey: 'CAL', serverInstance: xrayConnectorId])
 
 	   /* def response = sh(script: "curl -u mnarin:mnarin -X GET -H 'Content-Type: application/json' 'http://10.150.17.73:8100/rest/api/2/issue/10123'", returnStdout: true)
