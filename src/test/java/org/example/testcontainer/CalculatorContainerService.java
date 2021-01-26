@@ -8,8 +8,6 @@ import org.testcontainers.containers.Network;
 import org.testcontainers.utility.DockerImageName;
 
 import java.io.File;
-import java.lang.reflect.Field;
-import java.util.Map;
 
 @Service
 public class CalculatorContainerService {
@@ -27,7 +25,6 @@ public class CalculatorContainerService {
 //            .asCompatibleSubstituteFor("node-chrome");
 
 
-
     private Network network;
 
     private GenericContainer<?> additionContainer;
@@ -36,14 +33,15 @@ public class CalculatorContainerService {
     private BrowserWebDriverContainer<?> chromeContainer;
 
 
-
     public CalculatorContainerService() {
-        network = Network.newNetwork();
+        network = Network.SHARED;
         additionContainer = new GenericContainer<>(ADDITION_SERVICE)
-            .withPrivilegedMode(true)
-            .withExposedPorts(8070)
+                .withPrivilegedMode(true)
+                .withNetwork(network)
+                .withNetworkMode("host")
+                .withExposedPorts(8070)
                 .withEnv("SERVER_PORT", "8070");
-           
+
 
         subtractionContainer = new GenericContainer<>(SUBTRACTION_SERVICE)
 //                .withPrivilegedMode(true)
@@ -76,7 +74,7 @@ public class CalculatorContainerService {
 //        chromeContainer.start();
     }
 
-    public void stopContainers(){
+    public void stopContainers() {
         additionContainer.close();
         subtractionContainer.close();
         calculatorContainer.close();
@@ -100,7 +98,7 @@ public class CalculatorContainerService {
         this.additionContainer = additionContainer;
     }
 
-        public GenericContainer<?> getSubtractionContainer() {
+    public GenericContainer<?> getSubtractionContainer() {
         return subtractionContainer;
     }
 
