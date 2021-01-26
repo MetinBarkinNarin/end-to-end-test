@@ -61,7 +61,7 @@ withEnv(['TESTCONTAINERS_RYUK_DISABLED=true',
 		def testExecutionFieldId = 10007
 		def testEnvironmentFieldName = "customfield_10131"
 		def projectKey = "CAL"
-		def xrayConnectorId = "2cc784ab-688a-4c1c-b0e7-e56017cfca7e"
+		def xrayConnectorId = "335af8bd-b7bd-41d4-ab8a-cde00f41bbd1"
 		def info = '''{
 				"fields": {
 					"project": {
